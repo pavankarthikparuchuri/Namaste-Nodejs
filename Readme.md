@@ -43,3 +43,19 @@
   - module.exports is returned from the require statement
 - Caching
   - module is cached
+
+# Nodejs has an event-driven architecture capable of asynchronous I/O
+
+- Javascript is a synchronous single threaded language
+- Meaning there is only one thread in which js engine runs (single threaded)
+- Thread is a smallest unit of execution in a process
+- Javascript is single threaded meaning executes line by line
+- Javascript is synchronous but with Nodejs we can perform asynchronous tasks.
+- Asynchronous tasks are tasks that takes time.
+- js engine offloads the requirements like accessing timer, databases, network calls and file system to libuv and libuv inteacts with os that manages all these and gets access to the resources and does the task and passes to JS Engine.
+- js engine can get access to all these super powers through libuv.
+- libuv is a multi-platform C library that provides support for asynchronous I/O based on event loops.
+- libuv acts a middle-layer between v8 engine and operating system.
+- That is why NodeJs is asynchronous and can do asynchronous I/O and non-blocking I/O as doesnot block the main thread JS ENGINE.
+- Javascript is synchronous singlethreaded but nodejs has libuv through which asynchronous I/O can be performed.
+- libuv is a famous library used in other places as well as where we need I/O operations to handle.
