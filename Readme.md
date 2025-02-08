@@ -59,3 +59,5 @@
 - That is why NodeJs is asynchronous and can do asynchronous I/O and non-blocking I/O as doesnot block the main thread JS ENGINE.
 - Javascript is synchronous singlethreaded but nodejs has libuv through which asynchronous I/O can be performed.
 - libuv is a famous library used in other places as well as where we need I/O operations to handle.
+
+# require require("node:util") is same as require("util")
