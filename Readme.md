@@ -61,3 +61,36 @@
 - libuv is a famous library used in other places as well as where we need I/O operations to handle.
 
 # require require("node:util") is same as require("util")
+
+# diving deep into v8 engine
+
+- Developed and maintained by google.
+- V8 engine parses, interprets, compiles and executes Javascript code.
+- when the code goes through v8 engine, the following steps happen
+- Parsing:
+  - lexical analysis (also known as tokenization): code that we provide is broken down into tokens
+  - syntax analysis: an abstract syntax tree(AST) is developed from the tokens.
+  - Example of AST:-
+  - ![alt text](image.png)
+  - when the code was not able to generate an abstract syntax tree, we face syntax error.
+- There are two types of languages, interpretted and compiled.
+- In interpretter, the code is translated line by line at the time of excution.
+- In Compiler, the code is first compiled to machine code so that during execution, no translation is required.
+- interpretted languages have fast initial execution but compiled languages initially heavily but executed.
+- interpretted languages are slow, although compiled languages takes time initially they are faster later.
+- Javascript is just in time compilation language. it has compiler as well as interpretter.
+- After Ast is formed, it goes to interpretter.
+- v8 engines interpretter name is ignition.
+- interpretter converts the code to byte code and after that the code goes through execution.
+- v8 engines compiler is turbo fan.
+- when the code is being processed in interpretter it finds out the code which is used again and again. this reusabled code is called hot code, this code is passed to compiler so that it could optimize in such a way that the execution of that hot code would be faster.
+- compiler compiles the hot code and generates an optimised machine code.
+- The role of the compiler is to optimise the hot code so that it's execution would be faster.
+- but while converting to optimised machine code it makes some assumptions.
+- like if the hot code is a sum function that takes 2 parameters a and b, lets say it assumes that a and b are numbers.
+- if in future a sum call is invoked with two strings then it deoptimises the code and passes it to interpretter, it interpretts and converts into byte code.
+- ![alt text](image-1.png)
+- the use of interpretter and a compiler to convert the ast into byte and optimised machine code is called just in time compilation.
+- Also garbage collection is done in parallel, v8's garbage collection are called orinoco, oil pan, scavenger
+- mark and sweep algorithm is used for garbage collection.
+- v8 engine also does inline caching, copy elision
