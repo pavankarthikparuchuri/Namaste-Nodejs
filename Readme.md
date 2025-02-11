@@ -94,3 +94,56 @@
 - Also garbage collection is done in parallel, v8's garbage collection are called orinoco, oil pan, scavenger
 - mark and sweep algorithm is used for garbage collection.
 - v8 engine also does inline caching, copy elision
+
+# libuv deep dive
+
+- lib uv consists of event loop, callback queues, thread pool.
+- when v8 engine encounters an asynchronous task it will offload it to libuv.
+- after the completion of the asynchronous tasks, it is libuv's job to pass the call back functions to the call stack for execution.
+- the call functions are pushed to the call back queue and once the call stack is empty then the tasks in the callback queue are pushed to the call stack.
+- event loop is the one which monitors the call stack and the callback queue and once the call stack is empty then the tasks are pushed to callstack.
+- there's one callback queue for settimeout, one for polling apis and many other call back queues.
+- if there are multiple sorts of callback functions are present in the callback queues then which callback function should be given priority.
+- event loop runs in phases. kind of a circular loop
+  - ![alt text](image-2.png)
+  - first phase is timer phase where all the settimeout, setinterval callbacks are executed.
+  - next phase is poll phase where all the I/O callbacks like incoming connections, fs, crypto, http.get are executed.
+  - next is check phase where setImmediate callback functions are executed.
+  - next is close phase, socket.on("close")etc call back functions are executed.
+  - next would be timer phase and the loop continues.
+- and before each of these phases running there is some another circular loop which is run initially
+  - process.nextTick() phase where it checks if there are any callbacks from process.nextTicks
+  - promise callbacks phase where it checks if there are callbacks from the resolved promises.
+  - after these two checks then it goes to the timer/poll/check/close phases.
+  - these nexttick and promise.callback are always checked before the timer and poll and check and close phases.
+- # when the event loop has nothing to do, meaning both the call stack and the call back queues are empty, then the event loops waits in the pool phase
+- along with timer, poll,close, check there are some other phases as well (pending callbacks, idle/prepare phase).
+- ![alt text](image-3.png)
+- one tick is known as one cycle in event loop.
+- all the pending I/O call backs in the poll phase or the I/O callbacks that were deferred gets executed in pending callbacks phase.
+- pending callbacks phase:- executes I/O callbacks deferred to the next loop iteration.
+- idle, prepare:- only used internally (we as developer don't need to take care of this, these are checks done by nodejs)
+- # Thread Pool
+  - asynchronous operations like fs.readFile are offloaded by the v8 engine to the libuv.
+  - libuv has a thread pool, it finds a thread from the thread pool and runs the file access system on that thread.
+  - libuv uses one of the thread from the thread pool and performs the operations on that thread.
+  - thread is a container where we can execute code.
+  - size of the thread pool is 4 by default.
+  - UV_THREADPOOL_SIZE = 4
+  - thread pools are used when we do some fs calls, dns.lookup, crypto calls or some user specified input.
+  - # Is Node Js is single threaded or multi-threaded.
+    - It depends when the code provided is synchronous code then it is single threaded.
+    - but when it has some operations that are asynchronous which requires a thread from the threadpool to execute then it is multi-threaded.
+    - It depends on the code we are running in the nodejs
+- we can change the size of the thread pool using process.env.UV_THREADPOOL_SIZE
+- all the networking in server happens on sockets.
+- each socket has a socket descriptor
+- if there are multiple users making api requests then the threads are not used from thread pool.
+- for handling multiple requests from users, os uses epoll(linux) or kqueue algorithms.
+- these algos are called scalable I/O event notification mechanisms
+- epoll descriptor is a collection of socket descriptors.
+- one epoll descriptor can handle multiple connections.
+- epoll is implemented at the kernel level of the operating system, it handles multiple socket descriptors.
+- if there are any activity on any of the socket, epoll descriptor will notify it to the libuv.
+- in the poll phase, event loop sends the callback to the callstack
+- epoll is a system call for scalable I/O event notification mechanism.
