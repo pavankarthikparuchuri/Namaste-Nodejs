@@ -147,3 +147,37 @@
 - if there are any activity on any of the socket, epoll descriptor will notify it to the libuv.
 - in the poll phase, event loop sends the callback to the callstack
 - epoll is a system call for scalable I/O event notification mechanism.
+
+# Server
+
+- Server word is loosely used, sometimes used for hardware, software or an application.
+- Deploying application on a server means a hardware, physical machine on which we will be running our application.
+- example:- our website is hosted on AWS servers meaning we are using the hardware provided by the AWS to run the application. here server is referring to hardware. here hardware is referred to as server.
+- sometimes server word is referred for software, we are creating http server using nodejs meaning creating a server that handles requests. here application is referred to as server.
+
+# Client Server Architecture
+
+- client is someone that is acessing the server, the one that is sending the requests.
+- when client makes a request, a socket connection is made and after that the request is sent to the server, server handles the request and sends the response back to the client and after that the socket is closed.
+- for every connection a new socket is created and after the response the socket is closed.
+- when a socket connection is made, it uses TCP/IP protocol.
+- protocol basically means the rules required for the communication.
+- HTTP, FTP, SMTP protocols basically say how the data should be sent in the network.
+- when we visit a website, user sends a HTTP request and server responds with HTML,JS, JSON data etc.
+- SMTP is used for email sending and forwarding
+- FTP is used for file transfer
+- These protocols says how the data should be sent and recieved over the network. each protocol is used for specific type of communication.
+- nodejs is mostly used for creating web servers, HTTP servers
+- we can have multiple applications on the same server, inorder to identify where exactly the application is running in the server we use ports.
+
+# Socket vs WebSockets
+
+- in sockets, the socket connection gets removed after the response.
+- in websockets, we have this connection until we explicitly close, we make a two way connection and we can send data in either way.
+- generally, we make api calls we use sockets and the socket gets closed once the request gets completed.
+
+# Express Js
+
+- creating HTTP servers using HTTP module is not the best way thus we use a wrapper around nodejs called express js to create HTTP servers.
+- express js is a nodejs web application framework
+- we will be using express for handling http requests from now on.
