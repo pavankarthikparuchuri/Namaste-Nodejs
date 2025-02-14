@@ -181,3 +181,75 @@
 - creating HTTP servers using HTTP module is not the best way thus we use a wrapper around nodejs called express js to create HTTP servers.
 - express js is a nodejs web application framework
 - we will be using express for handling http requests from now on.
+
+# Database
+
+- A database is an organized collection of data
+- Database Management system is through which we can handle databases and handle user requests and applications.
+- DBMS is a software that interacts with users, applications and the database to capture and analyse data.
+- the database term as well is loosely used to refer any DBMS, database, application associated with the database.
+
+- # Types of Databases
+  - Relational DB - MySQL, PostresQL
+  - No SQL DB - Mongo DB
+  - In memory DB - Redis
+  - Distributed SQL DB - cockroach DB
+  - TimeSeries DB - Influx DB
+  - OO (Object Oriented) DB - db4o
+  - Graph DB - Neo 4j
+  - Hierarchial DB - IBM IMS
+  - Network DB - IDMS
+  - Cloud DB - Amazon RDS
+- MongoDB is widely used with Nodejs.
+- # Relational Database Management system
+- EF CODD proposed 13 rules and any database that follows these rules are relational.
+- Relational Database meaning we have multiple tables and there is relation between these tables.
+- The data model is relational.
+- MYSQL, PostgreSQL are few popular Relational Databases.
+- MYSql is created by michael videnius.
+- All the relational databases uses sql.
+- to interact with the datastructure we use queries.
+- In RDBMS, these queries are sql.
+- postgressql was developed by another michael
+
+- # NoSQL Databases
+- NoSQL was introduced around 2000s
+- Four type No SQL databases
+  - Document based Database - example:- MongoDB, in this we store data as documents.
+  - Key Value Database
+  - Graph based Database
+  - wide column database
+  - multi model database - mix of multiple types of no sql databases
+- Mongo DB was developed by 10gen
+- Mongo came from the word Humongous
+- It can store huge amount of data which is not unstructure, has no schema.
+- MongoDB is flexible and very compatible with JS stack, Documents maps well with JSON and increases developers productivity.
+- Mongo DB is built using C++
+
+- # RDBMS vs NoSQL
+- Data in RDMS is stored in the for tables and has a pre-defined schema and follows ACID properties.
+- in NoSQL the data is stored in the form of documents, key value pairs, graph based etc and not every NoSQL follows ACID properties.
+- MongoDb is an example of NoSQl here data is stored as a collection, which is made of documents(also called JSON/ javascript object). In MongoDB, there is no need for joins, no need for data normalisation.
+- example:-
+  ![alt text](image-4.png)
+
+- in RDBMS we use Tables, rows coluns where as in NoSQL like MongoDB we use collection, Document, fields.
+- RDBMS stores structured data and in MongoDB we can store unstructured data.
+- RDBMS has a fixed schema whereas MongoDB has flexible schema.
+- RDBMS uses SQL, MongoDB uses MQL, Neo4J uses cypher.
+- RDBMS is tough for horizontal scaling, NoSQL is easy to scale horizontally and vertically.
+- Relationship between tables in RDBMS is through joins and foreign keys and in NoSQL we don't have that.
+- RDBMS is good for Read - heavy apps, transaction workloads and NoSQL is used in Real Time, Big Data, distributed computing.
+- RDBMS is used in Banking apps, NoSQL is used in real time analytics and social media.
+
+# MongoDB installation
+
+- one way installing like any other application, going to mogodb page and installing it
+- another way is, mongodb provides a way to create a database on behalf of us and install it on a server and gives the access to us.The database would be managed by mongodb.
+- first way is creating and maintaining a database on our self and second is using the database created by mongodb on behalf of us.
+- # Installation Steps
+  - Go to mongodb website
+  - Create a free cluster
+  - create a user
+  - get the connection string uri
+  - install the mongo db compass, a software that provides the ui through which we see our database.
