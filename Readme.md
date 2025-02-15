@@ -253,3 +253,4 @@
   - create a user
   - get the connection string uri
   - install the mongo db compass, a software that provides the ui through which we see our database.
+- in production , we dont mongodb module, we use mongoose library for connecting, querying from server.
