@@ -253,4 +253,28 @@
   - create a user
   - get the connection string uri
   - install the mongo db compass, a software that provides the ui through which we see our database.
-- in production , we dont mongodb module, we use mongoose library for connecting, querying from server.
+- in production, we dont mongodb module, we use mongoose library for connecting, querying from server.
+
+# Software development life cycle
+
+- first step would be gathering requirements for the project like what are we building, who are the target audience etc. it's the job of the product managers to gather the requirements of the project.
+- the product managers would work with the designers to create the ui mocks.
+- second step would be the design, a design document is created by senior engineers, engineering managers. we will defining the architecture, how we will be building the project whether as monolithic or micro service, tech stack will be discussed. HLD, LLD is discussed here.
+- third step step would be development phase, where sdes would be building the application.
+- fourth step would be testing, sdet's test the application like automation testing.
+- fifth step would be deployment, devops engineer(take care of deployments, managing servers etc)
+- sixth step would be maintainance.
+
+# Monolith vs Microservices
+
+- The whole application is built as a one single unit in monolithic architecture.
+- The application is built as a one single project
+- The project will be having code for frontend, backend, database connect, authorization, connection to emails etc, analytics.
+- The application is broken down into multiple smaller, independent, deployable services(services can be used interchangeably with projects, applications).
+- we can have multiple services, one service for handling frontend, one service for handling backend, one service for authentication, etc.
+
+- dev speed, code repo, scalability, deployment, tech stack, infra cost, complexity, fault isolation, testing, ownership, maintainence, rewamps, debugging, dev experience.
+
+# Dev Tinder
+
+- we will be building two microservices one for frontend, one for backend.
