@@ -278,3 +278,35 @@
 # Dev Tinder
 
 - we will be building two microservices one for frontend, one for backend.
+- Dev Tinder is a tinder like platform for connections made for developers.
+
+- # Requirements
+  - Create an account
+  - Login
+  - Update your profile
+  - feed page - explore
+  - send connection request
+  - page to see our matches
+  - page to see the requests sent/recieved
+  - update your profile
+- # Design
+  - Two Microservices
+    - Frontend (react)
+    - backend (nodejs, mongodb)
+- # Development
+  - LLD
+    - # DB Design
+      - User Collection
+        - first name, last name, email id, password, age, gender
+      - Connection Request
+        - from userId, to userId, status
+    - # API Design
+      - we will be using REST for building the apis.
+      - post apis for signup and login
+      - get api for profile
+      - post/patch api for updating the profile
+      - delete api for deleting a profile
+      - post api to send a connection (interest/ ignore)
+      - post api to review request
+      - get api to check all the requests
+      - get api to check all the connections
